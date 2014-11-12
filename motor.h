@@ -17,15 +17,16 @@ int convert_joystick_to_motor (short a_joystick_value)
     //
     float speed = 0;
     short direction = 1;
+    const short deadBand = 28;
 
     //
     // If the specified joystick value is [-27,27], then set the speed to the
     // absolute value of the joystick value and subtract 28.  This margin allows
     // for a dead zone (noise) within the joystick hardware.
     //
-    if ((a_joystick_value < -28) || (a_joystick_value > 28))
+    if ((a_joystick_value < -(deadBand)) || (a_joystick_value > deadBand))
     {
-        speed = abs (a_joystick_value) - 28;
+        speed = abs (a_joystick_value) - deadBand;
     }
     //
     // If the specified joystick value is greater than zero, then set the
