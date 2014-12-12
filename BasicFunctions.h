@@ -245,15 +245,15 @@ enum e_hand_command
 {
     e_invalid_hand_command,
 
-    e_hand_command_open,
-    e_hand_command_close,
-    e_hand_command_partially_open,
-    e_hand_command_partially_close,
+    e_hand_command_raise,
+    e_hand_command_lower,
+    e_hand_command_partially_raise,
+    e_hand_command_partially_lower,
 
     e_count_hand_command
 };
 
-void move_hand (e_hand_command a_command)
+void move_arm (e_hand_command a_command)
 
 {
     //
@@ -264,15 +264,17 @@ void move_hand (e_hand_command a_command)
 
     switch (a_command)
     {
-    case e_hand_command_open:
+    case e_hand_command_raise:
         left_hand_motor_position = c_left_hand_motor_fully_open_position;
         right_hand_motor_position = c_right_hand_motor_fully_open_position;
         break;
-    case e_hand_command_close:
-        left_hand_motor_position = c_left_hand_motor_fully_closed_position;
-        right_hand_motor_position = c_right_hand_motor_fully_closed_position;
-        break;
-    case e_hand_command_partially_open:
+    case e_hand_command_lower:
+    		if(right_hand_motor_position > c_right_hand_motor_fully_closed_position){
+        	left_hand_motor_position = c_left_hand_motor_fully_closed_position;
+      		right_hand_motor_position = c_right_hand_motor_fully_closed_position;
+      	}
+      	break;
+    case e_hand_command_partially_raise:
         //
         // This increment block allows the user to control how far open or
         // shut the hand is.  This block opens the claws by an increment.
@@ -283,7 +285,7 @@ void move_hand (e_hand_command a_command)
         left_hand_motor_position = left_hand_motor_position - 2;
         right_hand_motor_position = right_hand_motor_position + 2;
         break;
-    case e_hand_command_partially_close:
+    case e_hand_command_partially_lower:
         left_hand_motor_position = left_hand_motor_position + 2;
         right_hand_motor_position = right_hand_motor_position - 2;
         break;
@@ -305,9 +307,9 @@ void move_hand (e_hand_command a_command)
     {
         right_hand_motor_position = c_right_hand_motor_fully_open_position;
     }
-    else if (right_hand_motor_position < c_right_hand_motor_fully_closed_position)
+    else if (right_hand_motor_position < c_right_hand_motor_partially_closed_position)
     {
-        right_hand_motor_position = c_right_hand_motor_fully_closed_position;
+        right_hand_motor_position = c_right_hand_motor_partially_closed_position;
     }
 
     //

@@ -33,7 +33,7 @@ void initialize (void)
     // As part of initialization, move the servos to the open position.  The
     // servos need to be open, so the robot remains less than 18 inches deep.
     //
-    move_hand (e_hand_command_open);
+    move_arm (e_hand_command_raise);
 
     //
     // Set the amount of clicks required to turn the NXT (aka brick) off.  This

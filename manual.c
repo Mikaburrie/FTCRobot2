@@ -8,7 +8,7 @@
 #pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C2_1,    left_hand_servo,      tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    right_hand_servo,     tServoStandard)
-#pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
+#pragma config(Servo,  srvo_S1_C2_3,    grab_servo,           tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_6,    servo6,               tServoNone)
@@ -116,21 +116,24 @@ task main()
 		//
 		// Manage the hand servo positions, which make the hand open and close.
 		//
-		if (joy2Btn (6) != false)
+		//M.B. changed button 6 to button 4
+		//M.B. changed joy2Btn to joy1Btn because we arn't using a second joystick(yet)
+		//M.B. issue with buttons on controller. not permanant
+		if (joy1Btn (6) != false)
 		{
-			move_hand (e_hand_command_open);
+			move_arm (e_hand_command_raise);
 		}
-		else if (joy2Btn (8) != false)
+		else if (joy1Btn (8) != false)
 		{
-			move_hand (e_hand_command_close);
+			move_arm (e_hand_command_lower);
 		}
-		else if (joy2Btn (5) != false)
+		else if (joy1Btn (5) != false)
 		{
-			move_hand (e_hand_command_partially_open);
+			move_arm (e_hand_command_partially_raise);
 		}
-		else if (joy2Btn (7) != false)
+		else if (joy1Btn (7) != false)
 		{
-			move_hand (e_hand_command_partially_close);
+			move_arm (e_hand_command_partially_lower);
 		}
 
 		//

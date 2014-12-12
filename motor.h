@@ -26,7 +26,7 @@ int convert_joystick_to_motor (short a_joystick_value)
     //
     if ((a_joystick_value < -(deadBand)) || (a_joystick_value > deadBand))
     {
-        speed = abs (a_joystick_value) - deadBand;
+        speed = abs (a_joystick_value) - 28;
     }
     //
     // If the specified joystick value is greater than zero, then set the
