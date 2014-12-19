@@ -25,7 +25,7 @@ void initialize (void)
     // Initialize the arm motors.
     //
     nMotorEncoder[c_left_arm_motor] = 0;
-    nMotorEncoder[c_right_arm_motor] = 0;
+    nMotorEncoder[c_ball_lift_motor] = 0;
 
     //
     // Initialize the hand motors.

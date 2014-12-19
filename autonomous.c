@@ -121,7 +121,7 @@ task main()
     // Lower the arm and close the hand.
     //
 //  lower_arm ();
-    move_hand (e_hand_command_close);
+    move_arm (e_hand_command_lower);
 
     //
     // Drive forward twelve inches.

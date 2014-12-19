@@ -1,14 +1,14 @@
 #pragma config(Hubs,  S1, HTMotor,  HTServo,  none,     none)
 #pragma config(Sensor, S1,     joystick1,      sensorI2CMuxController)
-#pragma config(Sensor, S2,     eye_sensor,     sensorLightActive)
-#pragma config(Motor,  motorA,          left_arm_motor, tmotorNXT, PIDControl, encoder)
-#pragma config(Motor,  motorB,          right_arm_motor, tmotorNXT, PIDControl, encoder)
-#pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
+#pragma config(Sensor, S3,     eye_sensor,     sensorLightActive)
+#pragma config(Motor,  motorA,          ball_lift_motor, tmotorNXT, PIDControl, encoder)
+#pragma config(Motor,  motorB,          left_arm_motor, tmotorNXT, PIDControl, encoder)
+#pragma config(Motor,  motorC,          ball_scoop_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C2_1,    left_hand_servo,      tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    right_hand_servo,     tServoStandard)
-#pragma config(Servo,  srvo_S1_C2_3,    grab_servo,           tServoStandard)
+#pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_4,    servo4,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_5,    servo5,               tServoNone)
 #pragma config(Servo,  srvo_S1_C2_6,    servo6,               tServoNone)
@@ -111,7 +111,7 @@ task main()
 		//
 		int l_motor = convert_joystick_to_motor (joystick.joy2_y1);
 		motor[c_left_arm_motor] = l_motor;
-		motor[c_right_arm_motor] = l_motor;
+//		motor[c_right_arm_motor] = l_motor;
 
 		//
 		// Manage the hand servo positions, which make the hand open and close.
@@ -135,6 +135,12 @@ task main()
 		{
 			move_arm (e_hand_command_partially_lower);
 		}
+
+		scoop_balls (joystick.joy2_y1);
+
+		lift_balls (joystick.joy2_y2);
+
+
 
 		//
 		// This wait is important for several reasons.  It provides the message
