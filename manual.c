@@ -119,19 +119,20 @@ task main()
 		//M.B. changed button 6 to button 4
 		//M.B. changed joy2Btn to joy1Btn because we arn't using a second joystick(yet)
 		//M.B. issue with buttons on controller. not permanant
-		if (joy1Btn (6) != false)
+		//M.B. (Brittany) changed joy1Btn to joy2Btn
+		if (joy2Btn (6) != false)
 		{
 			move_arm (e_hand_command_raise);
 		}
-		else if (joy1Btn (8) != false)
+		else if (joy2Btn (8) != false)
 		{
 			move_arm (e_hand_command_lower);
 		}
-		else if (joy1Btn (5) != false)
+		else if (joy2Btn (5) != false)
 		{
 			move_arm (e_hand_command_partially_raise);
 		}
-		else if (joy1Btn (7) != false)
+		else if (joy2Btn (7) != false)
 		{
 			move_arm (e_hand_command_partially_lower);
 		}
