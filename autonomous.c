@@ -29,9 +29,12 @@
 #include "constants.h"  // Must be included before other user-defined headers.
 
 #include "BasicFunctions.h"
+#include "motor.h"
 #include "light.h"
 
 #include "initialize.h" // Must be included after other user-defined headers.
+
+#include "manual.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -78,8 +81,10 @@ void initializeRobot()
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 task main()
 {
+
     initialize ();  // In the original template this was "initializeRobot();"
 
     waitForStart (); // Wait for the beginning of autonomous phase.

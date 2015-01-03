@@ -15,8 +15,11 @@
 //    sequences.
 */
 
-const float kInch = (((1440.) / (3.1415926535 * 4.)) * (3./1.95));
-const float kDegrees = (3500. / 90.);
+
+// 9.5 in. = 1 rotation
+// 1 in = 151.57894736842105263157894736842 ticks
+const float kInch = ((1440.0) / (9.5));  //Ticks per inch
+const float kDegrees = (322);
 
 //-------------------------------------------------------------------------------
 //
@@ -323,11 +326,15 @@ void move_arm (e_hand_command a_command)
 void scoop_balls (short scoop_command)
 
 {
-	motor[c_ball_scoop_motor] = scoop_command;
+	if(abs(scoop_command) > 10){
+		motor[c_ball_scoop_motor] = scoop_command;
+	}
 }
 
 void lift_balls (short lift_command)
 
 {
-	motor[c_ball_lift_motor] = lift_command;
+	if(abs(lift_command) > 10){
+		motor[c_ball_lift_motor] = lift_command;
+	}
 }
