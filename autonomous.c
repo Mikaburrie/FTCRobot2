@@ -35,6 +35,7 @@
 #include "initialize.h" // Must be included after other user-defined headers.
 
 #include "manual.h"
+#include "transition.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -84,7 +85,6 @@ void initializeRobot()
 
 task main()
 {
-
     initialize ();  // In the original template this was "initializeRobot();"
 
     waitForStart (); // Wait for the beginning of autonomous phase.
@@ -142,5 +142,7 @@ task main()
     // Drive forward twelve inches.
     //
     drive_both_wheels (75, 75, 12 * kInch);
+
+    transition(); //waits for autonomous phase to end
 
 } // main
