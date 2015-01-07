@@ -30,6 +30,8 @@ const TServoIndex c_right_hand_motor = right_hand_servo;
 
 const int c_left_hand_motor_fully_open_position = 0;
 const int c_left_hand_motor_fully_closed_position = 180;
+
+//numbers will need to be recalculated
 const int c_right_hand_motor_fully_open_position = 217;
 const int c_right_hand_motor_fully_closed_position = 120;
 const int c_right_hand_motor_partially_closed_position = 100;

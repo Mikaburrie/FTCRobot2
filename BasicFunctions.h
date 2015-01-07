@@ -19,6 +19,7 @@
 // 9.5 in. = 1 rotation
 // 1 in = 151.57894736842105263157894736842 ticks
 const float kInch = ((1440.0) / (9.5));  //Ticks per inch
+const float kFoot = (kInch * 12)
 const float kDegrees = (322);
 
 //-------------------------------------------------------------------------------

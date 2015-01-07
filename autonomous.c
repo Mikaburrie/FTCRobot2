@@ -89,59 +89,15 @@ task main()
 
     waitForStart (); // Wait for the beginning of autonomous phase.
 
-    //
-    // Raise the arm.  Unless the arm is ALL the way down, this call will hang
-    // your robot.
-    //
-//  raise_arm ();
 
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
+    drive_both_wheels (100, 100, 7 * kFoot); //drives 7 feet off ramp
 
-    //
-    // Rotate right 90 degrees.  This will cause one motor to turn in one
-    // direction, but the other will turn in the opposite direction.
-    //
-    TurnRight (90 * kDegrees);
+    TurnRight (180 * kDegrees); //turns 180 degrees to be able to face the goal
 
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
+    drive_both_wheels (-100, -100, 1 * kFoot); //drives into goal for pick-up
 
-    //
-    // Rotate right 90 degrees.  This will cause one motor to turn in one
-    // direction, but the other will turn in the opposite direction.
-    //
-    TurnRight (90 * kDegrees);
+    move_arm(e_hand_command_lower); //grabs onto goal
 
-    //
-    // Drive forward until a white line is found.
-    //
-    find_line ();
-
-    //
-    // Lower the arm and close the hand.
-    //
-//  lower_arm ();
-    move_arm (e_hand_command_lower);
-
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
-
-    //
-    // Rotate left 90 degrees.
-    //
-    TurnLeft (90 * kDegrees);
-
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
 
     transition(); //waits for autonomous phase to end
 
