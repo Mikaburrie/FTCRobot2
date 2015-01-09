@@ -1,10 +1,11 @@
 #pragma config(Hubs,  S1, HTMotor,  HTServo,  none,     none)
+#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Sensor, S3,     eye_sensor,     sensorLightActive)
 #pragma config(Motor,  motorA,          ball_lift_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  motorB,          left_arm_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  motorC,          ball_scoop_motor, tmotorNXT, PIDControl, encoder)
-#pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed, encoder)
+#pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop, encoder)
 #pragma config(Servo,  srvo_S1_C2_1,    left_hand_servo,      tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    right_hand_servo,     tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
@@ -35,6 +36,7 @@
 #include "initialize.h" // Must be included after other user-defined headers.
 
 #include "manual.h"
+#include "auto_functions.h"
 #include "transition.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,13 +92,17 @@ task main()
     waitForStart (); // Wait for the beginning of autonomous phase.
 
 
-    drive_both_wheels (100, 100, 7 * kFoot); //drives 7 feet off ramp
+    drive_off_ramp (false); //drives off ramp
 
-    TurnRight (180 * kDegrees); //turns 180 degrees to be able to face the goal
+    drive_both_wheels (-100, -100, 42 * kInch); //drives into goal for pick-up (3ft 4in)
 
-    drive_both_wheels (-100, -100, 1 * kFoot); //drives into goal for pick-up
+    clasp_goal(true); //grabs onto goal
 
-    move_arm(e_hand_command_lower); //grabs onto goal
+    TurnRight(20 * kDegrees); //goes at angle to drive to park zone
+
+    drive_both_wheels(100, 100, 11 * kFoot); //drives to park zone
+
+
 
 
     transition(); //waits for autonomous phase to end

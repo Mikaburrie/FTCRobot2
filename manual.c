@@ -4,8 +4,8 @@
 #pragma config(Motor,  motorA,          ball_lift_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  motorB,          left_arm_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  motorC,          ball_scoop_motor, tmotorNXT, PIDControl, encoder)
-#pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed, encoder)
+#pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop, encoder)
 #pragma config(Servo,  srvo_S1_C2_1,    left_hand_servo,      tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    right_hand_servo,     tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_3,    servo3,               tServoNone)
@@ -82,6 +82,8 @@ be used for both manual and autonomous purposes.
 // At the end of the tele-op period, the FMS will autonmatically abort (stop) execution of the program.
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//front = ball sweeper; back = goal grabber
 
 task main()
 {

@@ -13,6 +13,11 @@ void manual_main_function ()
 		//
 		hogCPU (); // Prevent the messaging task from writing to it while it is being read.
 		getJoystickSettings (joystick); // Added to template for kick-off presentation
+		if(joystick.StopPgm)
+		{
+			nMotorEncoder[c_left_foot_motor] = 0;
+			nMotorEncoder[c_right_foot_motor] = 0;
+		}
 		releaseCPU ();
 
 		//
@@ -65,8 +70,8 @@ void manual_main_function ()
 		// a chance to perform its processing.  It also determines how fast the
 		// servos open and close (see the increment blocks in move_hand).
 		//
-		wait1Msec (10);
 
+		wait1Msec (10);
 	} // while (true)
 
 }
