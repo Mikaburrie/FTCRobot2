@@ -2,7 +2,6 @@
 #pragma config(Sensor, S1,     joystick1,      sensorI2CMuxController)
 #pragma config(Sensor, S3,     eye_sensor,     sensorLightActive)
 #pragma config(Motor,  motorA,          ball_lift_motor, tmotorNXT, PIDControl, encoder)
-#pragma config(Motor,  motorB,          left_arm_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  motorC,          ball_scoop_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed, encoder)
 #pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop, encoder)

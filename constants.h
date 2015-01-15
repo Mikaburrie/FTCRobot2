@@ -17,7 +17,6 @@ const tMotor c_right_foot_motor = right_foot_motor;
 //
 // Define LEGO motor (aka arm) constants.
 //
-const tMotor c_left_arm_motor = left_arm_motor;
 const tMotor c_ball_lift_motor = ball_lift_motor;
 const tMotor c_ball_scoop_motor = ball_scoop_motor;
 
