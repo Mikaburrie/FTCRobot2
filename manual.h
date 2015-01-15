@@ -13,11 +13,6 @@ void manual_main_function ()
 		//
 		hogCPU (); // Prevent the messaging task from writing to it while it is being read.
 		getJoystickSettings (joystick); // Added to template for kick-off presentation
-		if(joystick.StopPgm)
-		{
-			nMotorEncoder[c_left_foot_motor] = 0;
-			nMotorEncoder[c_right_foot_motor] = 0;
-		}
 		releaseCPU ();
 
 		//
@@ -33,8 +28,8 @@ void manual_main_function ()
 		// Manage the power and direction of the LEGO arm motors, which make the
 		// arm move up and down.
 		//
-		int l_motor = convert_joystick_to_motor (joystick.joy2_y1);
-		motor[c_left_arm_motor] = l_motor;
+//		int l_motor = convert_joystick_to_motor (joystick.joy2_y1);
+//		motor[c_left_arm_motor] = l_motor;
 //		motor[c_right_arm_motor] = l_motor;
 
 		//

@@ -1,16 +1,19 @@
 //functions for autonomous
 const short motorSpeed = 100; //defines motor speed
+float distanceToDrive = 72.0; //72 in.
+float degreesToTurn = 0.0; //0.0 degrees
 
 //drives off ramp
 void drive_off_ramp (bool forward) //true = forward; false = backwards
 {
+	distanceToDrive = 72.0; //six feet or 72 in.
 	if (forward)
 	{
-		drive_both_wheels (motorSpeed, motorSpeed, 6 * kFoot);
+		drive_both_wheels (motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 6 feet
 	}
 	else
 	{
-		drive_both_wheels (-(motorSpeed), -(motorSpeed), 6 * kFoot);
+		drive_both_wheels (-(motorSpeed), -(motorSpeed), distanceToDrive * kInch);
 	}
 }
 
@@ -25,12 +28,21 @@ void clasp_goal (bool pos) //true = down; false = up
 	{
 		move_arm(e_hand_command_raise);
 	}
+	wait1Msec(50); //waits 0.05 seconds for arm to move
 }
 
 //lifts ball scoop
-void lift_dropper (int height)
+void lift_dropper (int height, bool direction) //true = up; false = down
 {
-	lift_balls(100);
-	wait10Msec(height * 10);
-	lift_balls(0);
+	if(direction)
+	{
+		lift_balls(motorSpeed);
+	}
+	else
+	{
+		lift_balls(-(motorSpeed));
+	}
+
+	wait1Msec(height * 100); //gives time for sweeper to raise/lower
+	lift_balls(0); //stops lift motor
 }

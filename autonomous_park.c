@@ -84,30 +84,36 @@ void initializeRobot()
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 task main()
 {
-    initialize ();  // In the original template this was "initializeRobot();"
+  initialize ();  // In the original template this was "initializeRobot();"
 
-    waitForStart (); // Wait for the beginning of autonomous phase.
-
-
-    drive_off_ramp (false); //drives off ramp backwards
-
-    distanceToDrive = 42.0; //42 in.
-    drive_both_wheels (-(motorSpeed), -(motorSpeed), distanceToDrive * kInch); //drives into goal for pick-up (3ft 4in)
-
-    clasp_goal(true); //grabs onto goal
-
-    degreesToTurn = 20.0; //20 degrees
-    TurnRight(degreesToTurn * kDegrees); //goes at angle of 20 degrees to drive to park zone
-
-    distanceToDrive = 132; //132 in.
-    drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 11 feet to park zone
+  waitForStart (); // Wait for the beginning of autonomous phase.
 
 
+  distanceToDrive = 66.0; //5.5 feet
+  drive_both_wheels (-(motorSpeed), -(motorSpeed), distanceToDrive * kInch); //drives out of parking zone to kickstand
+
+  distanceToDrive = 6.0; //6 in
+  drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //backs up to angle for final try
+
+  degreesToTurn = 90.0; //90 degrees
+  TurnLeft(degreesToTurn * kDegrees); //turns 90 degrees
+
+  distanceToDrive = 4.0; //4 in
+  drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 4 in
+
+  degreesToTurn = 90.0; //90 degrees
+  TurnRight(degreesToTurn * kDegrees); //turns 90 degrees
+
+  distanceToDrive = 18.0; //1.5 feet
+  drive_both_wheels(-(motorSpeed), -(motorSpeed), distanceToDrive * kInch); //comes in for final try to knock down the kickstand
+
+  //the program basically flails around to knock down the kickstand
 
 
-    transition(); //waits for autonomous phase to end
+
+
+  transition(); //waits for autonomous phase to end
 
 } // main

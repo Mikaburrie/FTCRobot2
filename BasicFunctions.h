@@ -18,9 +18,9 @@
 
 // 9.5 in. = 1 rotation
 // 1 in = 151.57894736842105263157894736842 ticks
-const float kInch = ((1440.0) / (9.5));  //Ticks per inch
-const float kFoot = (kInch * 12);
-const float kDegrees = (322);
+const float kInch = ((1440.0) / (9.5));  //Ticks per inch    1440 = ticks per rotation    9.5 = circumpherse in inchs
+//const float kFoot = (kInch * 12);  //inch times 12 to get 1 foot
+const float kDegrees = (322);  //Lots of trig.
 
 //-------------------------------------------------------------------------------
 //
@@ -166,79 +166,8 @@ enum e_arm_command
     e_count_arm_command
 };
 
-e_arm_command move_arm (e_arm_command a_command)
 
-{
-    e_arm_command l_command = a_command;
 
-    switch (l_command)
-    {
-    case e_arm_command_stop:
-    default:
-        motor[c_left_arm_motor] = 0;
-//        motor[c_right_arm_motor] = 0;
-        nMotorEncoder[c_left_arm_motor] = 0;
-//        nMotorEncoder[c_right_arm_motor] = 0;
-        break;
-    case e_arm_command_raise:
-        if (nMotorEncoder[c_left_arm_motor] < -550)
-        {
-            motor[c_left_arm_motor] = 0;
-//            motor[c_right_arm_motor] = 0;
-            nMotorEncoder[c_left_arm_motor] = 0;
-//            nMotorEncoder[c_right_arm_motor] = 0;
-            l_command = e_arm_command_stop;
-        }
-        break;
-    case e_arm_command_lower:
-        if (nMotorEncoder[c_left_arm_motor] > 550)
-        {
-            motor[c_left_arm_motor] = 0;
-//            motor[c_right_arm_motor] = 0;
-            nMotorEncoder[c_left_arm_motor] = 0;
-//            nMotorEncoder[c_right_arm_motor] = 0;
-            l_command = e_arm_command_stop;
-        }
-        break;
-    }
-
-    return l_command;
-
-} // move_arm
-
-//-------------------------------------------------------------------------------
-//
-// lower_arm
-//
-//-------
-void lower_arm (void)
-
-{
-    motor[c_left_arm_motor] = 75;
-//    motor[c_right_arm_motor] = 75;
-    while (move_arm (e_arm_command_lower) != e_arm_command_stop)
-    {
-        displayTextLine (2, "%d   %d", nMotorEncoder[c_left_arm_motor] /*, nMotorEncoder[c_right_arm_motor]*/);
-    };
-
-} // lower_arm
-
-//-------------------------------------------------------------------------------
-//
-// raise_arm
-//
-//-------
-void raise_arm (void)
-
-{
-    motor[c_left_arm_motor] = -50;
-//    motor[c_right_arm_motor] = -50;
-    while (move_arm (e_arm_command_raise) != e_arm_command_stop)
-    {
-        displayTextLine (2, "%d   %d", nMotorEncoder[c_left_arm_motor], /*nMotorEncoder[c_right_arm_motor]*/);
-    };
-
-} // raise_arm
 
 //-------------------------------------------------------------------------------
 //
