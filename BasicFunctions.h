@@ -166,7 +166,81 @@ enum e_arm_command
     e_count_arm_command
 };
 
+<<<<<<< HEAD
 
+=======
+e_arm_command move_arm (e_arm_command a_command)
+
+{
+    e_arm_command l_command = a_command;
+
+    switch (l_command)
+    {
+    case e_arm_command_stop:
+    default:
+        motor[c_left_arm_motor] = 0;
+        motor[c_right_arm_motor] = 0;
+        nMotorEncoder[c_left_arm_motor] = 0;
+        nMotorEncoder[c_right_arm_motor] = 0;
+        break;
+    case e_arm_command_raise:
+        if (nMotorEncoder[c_left_arm_motor] < -550)
+        {
+            motor[c_left_arm_motor] = 0;
+            motor[c_right_arm_motor] = 0;
+            nMotorEncoder[c_left_arm_motor] = 0;
+            nMotorEncoder[c_right_arm_motor] = 0;
+            l_command = e_arm_command_stop;
+        }
+        break;
+    case e_arm_command_lower:
+        if (nMotorEncoder[c_left_arm_motor] > 550)
+        {
+            motor[c_left_arm_motor] = 0;
+            motor[c_right_arm_motor] = 0;
+            nMotorEncoder[c_left_arm_motor] = 0;
+            nMotorEncoder[c_right_arm_motor] = 0;
+            l_command = e_arm_command_stop;
+        }
+        break;
+    }
+
+    return l_command;
+
+} // move_arm
+
+//-------------------------------------------------------------------------------
+//
+// lower_arm
+//
+//-------
+void lower_arm (void)
+
+{
+    motor[c_left_arm_motor] = 75;
+    motor[c_right_arm_motor] = 75;
+    while (move_arm (e_arm_command_lower) != e_arm_command_stop)
+    {
+        displayTextLine (2, "%d   %d", nMotorEncoder[c_left_arm_motor], nMotorEncoder[c_right_arm_motor]);
+    };
+
+} // lower_arm
+
+//-------------------------------------------------------------------------------
+//
+// raise_arm
+//
+//-------
+void raise_arm (void)
+
+{
+    motor[c_left_arm_motor] = -50;
+    motor[c_right_arm_motor] = -50;
+    while (move_arm (e_arm_command_raise) != e_arm_command_stop)
+    {
+        displayTextLine (2, "%d   %d", nMotorEncoder[c_left_arm_motor], nMotorEncoder[c_right_arm_motor]);
+    };
+>>>>>>> parent of 9ee940e... Joystick changes
 
 
 //-------------------------------------------------------------------------------
@@ -252,6 +326,7 @@ void move_arm (e_hand_command a_command)
     servoTarget[c_right_hand_motor] = right_hand_motor_position;
 
 } // move_hand
+<<<<<<< HEAD
 
 void scoop_balls (short scoop_command)
 
@@ -268,3 +343,5 @@ void lift_balls (short lift_command)
 		motor[c_ball_lift_motor] = lift_command;
 	}
 }
+=======
+>>>>>>> parent of 9ee940e... Joystick changes
