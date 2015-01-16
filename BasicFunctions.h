@@ -334,6 +334,10 @@ void scoop_balls (short scoop_command)
 	if(abs(scoop_command) > 10){
 		motor[c_ball_scoop_motor] = scoop_command;
 	}
+	else
+	{
+		motor[c_ball_scoop_motor] = 0;
+	}
 }
 
 void lift_balls (short lift_command)
@@ -341,6 +345,10 @@ void lift_balls (short lift_command)
 {
 	if(abs(lift_command) > 10){
 		motor[c_ball_lift_motor] = lift_command;
+	}
+	else
+	{
+		motor[c_ball_lift_motor] = 0;
 	}
 }
 =======

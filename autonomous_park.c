@@ -91,7 +91,7 @@ task main()
   waitForStart (); // Wait for the beginning of autonomous phase.
 
 
-  distanceToDrive = 66.0; //5.5 feet
+  distanceToDrive = 72.0; //6 feet
   drive_both_wheels (-(motorSpeed), -(motorSpeed), distanceToDrive * kInch); //drives out of parking zone to kickstand
 
   distanceToDrive = 6.0; //6 in
