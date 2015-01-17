@@ -91,7 +91,6 @@ task main()
 
     waitForStart (); // Wait for the beginning of autonomous phase.
 
-<<<<<<< HEAD
 
     drive_off_ramp (false); //drives off ramp backwards
 
@@ -106,64 +105,6 @@ task main()
     distanceToDrive = 132; //132 in.
     drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 11 feet to park zone
 
-
-
-
     transition(); //waits for autonomous phase to end
-=======
-    //
-    // Raise the arm.  Unless the arm is ALL the way down, this call will hang
-    // your robot.
-    //
-//  raise_arm ();
-
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
-
-    //
-    // Rotate right 90 degrees.  This will cause one motor to turn in one
-    // direction, but the other will turn in the opposite direction.
-    //
-    TurnRight (90 * kDegrees);
-
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
-
-    //
-    // Rotate right 90 degrees.  This will cause one motor to turn in one
-    // direction, but the other will turn in the opposite direction.
-    //
-    TurnRight (90 * kDegrees);
-
-    //
-    // Drive forward until a white line is found.
-    //
-    find_line ();
-
-    //
-    // Lower the arm and close the hand.
-    //
-//  lower_arm ();
-    move_hand (e_hand_command_close);
-
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
-
-    //
-    // Rotate left 90 degrees.
-    //
-    TurnLeft (90 * kDegrees);
-
-    //
-    // Drive forward twelve inches.
-    //
-    drive_both_wheels (75, 75, 12 * kInch);
->>>>>>> parent of 9ee940e... Joystick changes
 
 } // main
