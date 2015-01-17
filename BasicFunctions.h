@@ -237,8 +237,9 @@ void move_arm (e_hand_command a_command)
 void scoop_balls (short scoop_command)
 
 {
-	if(abs(scoop_command) > 10){
-		motor[c_ball_scoop_motor] = scoop_command;
+	short deadBand = 10;
+	if(abs(scoop_command) > deadBand){
+		motor[c_ball_scoop_motor] = scoop_command > deadBand ? scoop_command -(deadBand) : scoop_command + deadBand;
 	}
 	else
 	{
@@ -249,8 +250,9 @@ void scoop_balls (short scoop_command)
 void lift_balls (short lift_command)
 
 {
+	short deadBand = 10;
 	if(abs(lift_command) > 10){
-		motor[c_ball_lift_motor] = lift_command;
+		motor[c_ball_lift_motor] = lift_command > deadBand ? lift_command -(deadBand) : lift_command + deadBand;
 	}
 	else
 	{
