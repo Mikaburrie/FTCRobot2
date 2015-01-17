@@ -1,19 +1,11 @@
 #pragma config(Hubs,  S1, HTMotor,  HTServo,  none,     none)
-#pragma config(Sensor, S1,     joystick1,      sensorI2CMuxController)
-<<<<<<< HEAD
+#pragma config(Sensor, S1,     joystick1,      sensorNone)
 #pragma config(Sensor, S3,     eye_sensor,     sensorLightActive)
 #pragma config(Motor,  motorA,          ball_lift_motor, tmotorNXT, PIDControl, encoder)
+#pragma config(Motor,  motorB,          left_arm_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  motorC,          ball_scoop_motor, tmotorNXT, PIDControl, encoder)
 #pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed, encoder)
 #pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop, encoder)
-=======
-#pragma config(Sensor, S2,     eye_sensor,     sensorLightActive)
-#pragma config(Motor,  motorA,          left_arm_motor, tmotorNXT, PIDControl, encoder)
-#pragma config(Motor,  motorB,          right_arm_motor, tmotorNXT, PIDControl, encoder)
-#pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop)
-#pragma config(Motor,  mtr_S1_C1_1,     left_foot_motor, tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C1_2,     right_foot_motor, tmotorTetrix, openLoop)
->>>>>>> parent of 9ee940e... Joystick changes
 #pragma config(Servo,  srvo_S1_C2_1,    left_hand_servo,      tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_2,    right_hand_servo,     tServoStandard)
 #pragma config(Servo,  srvo_S1_C2_3,    grab_servo,           tServoStandard)
@@ -95,70 +87,5 @@ be used for both manual and autonomous purposes.
 
 task main()
 {
-<<<<<<< HEAD
 	manual_main_function();
-=======
-	initialize ();  // In the original template this was "initializeRobot();"
-
-	waitForStart ();   // wait for start of tele-op phase
-
-	while (true)
-	{
-		//
-		// Read the current values of the joystick controllers.
-		//
-		hogCPU (); // Prevent the messaging task from writing to it while it is being read.
-		getJoystickSettings (joystick); // Added to template for kick-off presentation
-		releaseCPU ();
-
-		//
-		// Manage power to the drive wheels.
-		//
-		motor[c_left_foot_motor] =
-		convert_joystick_to_motor (joystick.joy1_y1);
-
-		motor[c_right_foot_motor] =
-		convert_joystick_to_motor (joystick.joy1_y2);
-
-		//
-		// Manage the power and direction of the LEGO arm motors, which make the
-		// arm move up and down.
-		//
-		int l_motor = convert_joystick_to_motor (joystick.joy2_y1);
-		motor[c_left_arm_motor] = l_motor;
-		motor[c_right_arm_motor] = l_motor;
-
-		//
-		// Manage the hand servo positions, which make the hand open and close.
-		//
-		//M.B. changed button 6 to button 4
-		//M.B. changed joy2Btn to joy1Btn because we arn't using a second joystick(yet)
-		//M.B. issue with buttons on controller. not permanant
-		if (joy1Btn (6) != false)
-		{
-			move_arm (e_hand_command_raise);
-		}
-		else if (joy1Btn (8) != false)
-		{
-			move_arm (e_hand_command_lower);
-		}
-		else if (joy1Btn (5) != false)
-		{
-			move_arm (e_hand_command_partially_raise);
-		}
-		else if (joy1Btn (7) != false)
-		{
-			move_arm (e_hand_command_partially_lower);
-		}
-
-		//
-		// This wait is important for several reasons.  It provides the message
-		// a chance to perform its processing.  It also determines how fast the
-		// servos open and close (see the increment blocks in move_hand).
-		//
-		wait1Msec (10);
-
-	} // while (true)
-
->>>>>>> parent of 9ee940e... Joystick changes
 } // main

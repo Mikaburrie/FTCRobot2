@@ -150,62 +150,6 @@ void TurnLeft (float Degrees)
 
 } // TurnLeft
 
-//-------------------------------------------------------------------------------
-//
-// move_arm
-//
-//-------
-enum e_arm_command
-{
-    e_invalid_arm_command,
-
-    e_arm_command_stop,
-    e_arm_command_raise,
-    e_arm_command_lower,
-
-    e_count_arm_command
-};
-
-
-e_arm_command move_arm (e_arm_command a_command)
-
-{
-    e_arm_command l_command = a_command;
-
-    switch (l_command)
-    {
-    case e_arm_command_stop:
-    default:
-        motor[c_left_arm_motor] = 0;
-//        motor[c_right_arm_motor] = 0;
-        nMotorEncoder[c_left_arm_motor] = 0;
-//        nMotorEncoder[c_right_arm_motor] = 0;
-        break;
-    case e_arm_command_raise:
-        if (nMotorEncoder[c_left_arm_motor] < -550)
-        {
-            motor[c_left_arm_motor] = 0;
-//            motor[c_right_arm_motor] = 0;
-            nMotorEncoder[c_left_arm_motor] = 0;
-//            nMotorEncoder[c_right_arm_motor] = 0;
-            l_command = e_arm_command_stop;
-        }
-        break;
-    case e_arm_command_lower:
-        if (nMotorEncoder[c_left_arm_motor] > 550)
-        {
-            motor[c_left_arm_motor] = 0;
-//            motor[c_right_arm_motor] = 0;
-            nMotorEncoder[c_left_arm_motor] = 0;
-//            nMotorEncoder[c_right_arm_motor] = 0;
-            l_command = e_arm_command_stop;
-        }
-        break;
-    }
-
-    return l_command;
-
-} // move_arm
 
 
 //-------------------------------------------------------------------------------
@@ -241,10 +185,8 @@ void move_arm (e_hand_command a_command)
         right_hand_motor_position = c_right_hand_motor_fully_open_position;
         break;
     case e_hand_command_lower:
-    		if(right_hand_motor_position > c_right_hand_motor_fully_closed_position){
-        	left_hand_motor_position = c_left_hand_motor_fully_closed_position;
-      		right_hand_motor_position = c_right_hand_motor_fully_closed_position;
-      	}
+        left_hand_motor_position = c_left_hand_motor_fully_closed_position;
+      	right_hand_motor_position = c_right_hand_motor_fully_closed_position;
       	break;
     case e_hand_command_partially_raise:
         //
@@ -279,9 +221,9 @@ void move_arm (e_hand_command a_command)
     {
         right_hand_motor_position = c_right_hand_motor_fully_open_position;
     }
-    else if (right_hand_motor_position < c_right_hand_motor_partially_closed_position)
+    else if (right_hand_motor_position < c_right_hand_motor_fully_closed_position)
     {
-        right_hand_motor_position = c_right_hand_motor_partially_closed_position;
+        right_hand_motor_position = c_right_hand_motor_fully_closed_position;
     }
 
     //

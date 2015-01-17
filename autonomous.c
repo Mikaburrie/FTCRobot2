@@ -91,6 +91,7 @@ task main()
 
     waitForStart (); // Wait for the beginning of autonomous phase.
 
+    clasp_goal(false); //ensures grabber is up
 
     drive_off_ramp (false); //drives off ramp backwards
 
