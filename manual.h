@@ -6,6 +6,9 @@ void manual_main_function ()
 
 	waitForStart ();   // wait for start of tele-op phase
 
+
+	static bool GTA_drive = true;
+
 	while (true)
 	{
 		//
@@ -17,12 +20,25 @@ void manual_main_function ()
 
 		//
 		// Manage power to the drive wheels.
-		//
-		motor[c_left_foot_motor] =
-		convert_joystick_to_motor (joystick.joy1_y1);
 
-		motor[c_right_foot_motor] =
-		convert_joystick_to_motor (joystick.joy1_y2);
+		float left_motor_speed = 0.0;
+		float right_motor_speed = 0.0;
+
+	 	left_motor_speed =  convert_joystick_to_motor (joystick.joy1_y1);
+		right_motor_speed = convert_joystick_to_motor (joystick.joy1_y2);
+
+		if(GTA_drive)
+		{
+		 	left_motor_speed  = -gta_joysticks_to_l_motor (joystick.joy1_y1, joystick.joy1_x2);
+			right_motor_speed = -gta_joysticks_to_r_motor (joystick.joy1_y1, joystick.joy1_x2);
+		}
+
+		motor[c_left_foot_motor] = left_motor_speed;
+		motor[c_right_foot_motor] = right_motor_speed;
+
+
+
+
 
 		//
 		// Manage the power and direction of the LEGO arm motors, which make the

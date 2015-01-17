@@ -46,3 +46,44 @@ int convert_joystick_to_motor (short a_joystick_value)
     return (speed * direction);
 
 } // convert_joystick_to_motor
+
+//GTA drive
+
+int gta_deadband (int value, int deadband, int top_limit, int bottom_limit)
+{
+	int result = 0;
+	if (abs(value) < deadband)
+		return 0;
+
+	if (value > 0) result = value - deadband;
+	else           result = value + deadband;
+
+	if (result > top_limit) 				result = top_limit;
+	else if (result < bottom_limit) result = bottom_limit;
+
+	return result;
+}
+
+int gta_joysticks_to_l_motor(short y_joystick_value, short x_joystick_value)
+{
+	int db_y = gta_deadband(y_joystick_value, 10, 100, -100);
+	int db_x = gta_deadband(x_joystick_value, 10, 100, -100);
+	int result = -(db_y) - db_x;
+
+	if(result > 100) 			 result = 100;
+	else if(result < -100) result = -100;
+
+	return result;
+}
+
+int gta_joysticks_to_r_motor(short y_joystick_value, short x_joystick_value)
+{
+	int db_y = gta_deadband(y_joystick_value, 10, 100, -100);
+	int db_x = gta_deadband(x_joystick_value, 10, 100, -100);
+	int result = -(db_y) + db_x;
+
+	if(result > 100) 			 result = 100;
+	else if(result < -100) result = -100;
+
+	return result;
+}
