@@ -49,41 +49,46 @@ int convert_joystick_to_motor (short a_joystick_value)
 
 //GTA drive
 
+const short top = 100; //top
+const short bottom = -100; //bottom
+const short db = 10; //deadband
+
+
 int gta_deadband (int value, int deadband, int top_limit, int bottom_limit)
 {
-	int result = 0;
-	if (abs(value) < deadband)
-		return 0;
+	int result = 0; //defines variable
+	if (abs(value) < deadband) //if less than deadband
+		return 0; //return 0(nothing)
 
-	if (value > 0) result = value - deadband;
-	else           result = value + deadband;
+	if (value > 0) result = value - deadband; //subtracts if positive
+	else           result = value + deadband; //adds if negative
 
-	if (result > top_limit) 				result = top_limit;
-	else if (result < bottom_limit) result = bottom_limit;
+	if (result > top_limit) 				result = top_limit;		 //checks if result is greater than max, if true, result = max
+	else if (result < bottom_limit) result = bottom_limit; //checks if result is less than min, if true, result = min
 
 	return result;
 }
 
 int gta_joysticks_to_l_motor(short y_joystick_value, short x_joystick_value)
 {
-	int db_y = gta_deadband(y_joystick_value, 10, 100, -100);
-	int db_x = gta_deadband(x_joystick_value, 10, 100, -100);
-	int result = -(db_y) - db_x;
+	int db_y = gta_deadband(y_joystick_value, db, top, bottom); //deadbands joystick values
+	int db_x = gta_deadband(x_joystick_value, db, top, bottom);
+	int result = -(db_y) - db_x; //gets left motor value
 
-	if(result > 100) 			 result = 100;
-	else if(result < -100) result = -100;
+	if(result > top)  			 result = top;    //checks if result is greater than max, if true, result = max
+	else if(result < bottom) result = bottom; //checks if result is less than min, if true, result = min
 
-	return result;
+	return result; //returns final left motor value
 }
 
 int gta_joysticks_to_r_motor(short y_joystick_value, short x_joystick_value)
 {
-	int db_y = gta_deadband(y_joystick_value, 10, 100, -100);
-	int db_x = gta_deadband(x_joystick_value, 10, 100, -100);
-	int result = -(db_y) + db_x;
+	int db_y = gta_deadband(y_joystick_value, db, top, bottom); //deadbands joystick values
+	int db_x = gta_deadband(x_joystick_value, db, top, bottom);
+	int result = -(db_y) + db_x; //gets right motor value
 
-	if(result > 100) 			 result = 100;
-	else if(result < -100) result = -100;
+	if(result > top) 			   result = top;    //checks if result is greater than max, if true, result = max
+	else if(result < bottom) result = bottom; //checks if result is less than min, if true, result = min
 
-	return result;
+	return result; //returns final right motor value
 }
