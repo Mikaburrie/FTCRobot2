@@ -93,7 +93,7 @@ task main()
   clasp_goal(true);
 
   distanceToDrive = 72.0; //6 feet
-  drive_both_wheels (-(motorSpeed), -(motorSpeed), distanceToDrive * kInch); //drives out of parking zone to kickstand
+  drive_both_wheels (-motorSpeed, -motorSpeed, distanceToDrive * kInch); //drives out of parking zone to kickstand
 
   distanceToDrive = 6.0; //6 in
   drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //backs up to angle for final try
@@ -101,14 +101,14 @@ task main()
   degreesToTurn = 90.0; //90 degrees
   TurnLeft(degreesToTurn * kDegrees); //turns 90 degrees
 
-  distanceToDrive = 4.0; //4 in
+  distanceToDrive = 6.0; //6 in
   drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 4 in
 
   degreesToTurn = 90.0; //90 degrees
   TurnRight(degreesToTurn * kDegrees); //turns 90 degrees
 
   distanceToDrive = 18.0; //1.5 feet
-  drive_both_wheels(-(motorSpeed), -(motorSpeed), distanceToDrive * kInch); //comes in for final try to knock down the kickstand
+  drive_both_wheels(-motorSpeed, -motorSpeed, distanceToDrive * kInch); //comes in for final try to knock down the kickstand
 
   //the program basically flails around to knock down the kickstand
 

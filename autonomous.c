@@ -96,7 +96,7 @@ task main()
     drive_off_ramp (false); //drives off ramp backwards
 
     distanceToDrive = 42.0; //42 in.
-    drive_both_wheels (-(motorSpeed), -(motorSpeed), distanceToDrive * kInch); //drives into goal for pick-up (3ft 4in)
+    drive_both_wheels (-motorSpeed, -motorSpeed, distanceToDrive * kInch); //drives into goal for pick-up (3ft 4in)
 
     clasp_goal(true); //grabs onto goal
 

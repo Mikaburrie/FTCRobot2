@@ -30,19 +30,3 @@ void clasp_goal (bool pos) //true = down; false = up
 	}
 	wait1Msec(50); //waits 0.05 seconds for arm to move
 }
-
-//lifts ball scoop
-void lift_dropper (int height, bool direction) //true = up; false = down
-{
-	if(direction)
-	{
-		lift_balls(motorSpeed);
-	}
-	else
-	{
-		lift_balls(-(motorSpeed));
-	}
-
-	wait1Msec(height * 100); //gives time for sweeper to raise/lower
-	lift_balls(0); //stops lift motor
-}
