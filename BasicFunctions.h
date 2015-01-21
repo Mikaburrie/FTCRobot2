@@ -18,9 +18,9 @@
 
 // 9.5 in. = 1 rotation
 // 1 in = 151.57894736842105263157894736842 ticks
-const float kInch = ((1440.0) / (9.5));  //Ticks per inch    1440 = ticks per rotation    9.5 = circumpherse in inchs
+const float kInch = ((1440.0) / (9.5));  //Ticks per inch    1440 = ticks per rotation    9.5 = circumpherense in inchs
 //const float kFoot = (kInch * 12);  //inch times 12 to get 1 foot
-const float kDegrees = (322);  //Lots of trig.
+const float kDegrees = (79/2);  //Lots of trig. 39.5
 
 //-------------------------------------------------------------------------------
 //

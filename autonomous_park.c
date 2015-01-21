@@ -95,19 +95,19 @@ task main()
   distanceToDrive = 72.0; //6 feet
   drive_both_wheels (-motorSpeed, -motorSpeed, distanceToDrive * kInch); //drives out of parking zone to kickstand
 
-  distanceToDrive = 6.0; //6 in
+  distanceToDrive = 12.0; //12 in
   drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //backs up to angle for final try
 
   degreesToTurn = 90.0; //90 degrees
   TurnLeft(degreesToTurn * kDegrees); //turns 90 degrees
 
-  distanceToDrive = 6.0; //6 in
+  distanceToDrive = 10.0; //10 in
   drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 4 in
 
   degreesToTurn = 90.0; //90 degrees
   TurnRight(degreesToTurn * kDegrees); //turns 90 degrees
 
-  distanceToDrive = 18.0; //1.5 feet
+  distanceToDrive = 30.0; //2.5 feet
   drive_both_wheels(-motorSpeed, -motorSpeed, distanceToDrive * kInch); //comes in for final try to knock down the kickstand
 
   //the program basically flails around to knock down the kickstand

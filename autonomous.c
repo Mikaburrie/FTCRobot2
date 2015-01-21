@@ -106,6 +106,9 @@ task main()
     distanceToDrive = 132; //132 in.
     drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 11 feet to park zone
 
+    clasp_goal(false); //releases goal
+
+
     transition(); //waits for autonomous phase to end
 
 } // main
