@@ -99,16 +99,7 @@ task main()
 
     drive_off_ramp (false); //drives off ramp backwards
 
-    distanceToDrive = 18.0; //1.5 ft.
-    drive_both_wheels (-motorSpeed, -motorSpeed, distanceToDrive * kInch); //drives into goal for pick-up
-
-    clasp_goal(true); //grabs onto goal
-
-    degreesToTurn = 30.0; //30 degrees
-    TurnRight(degreesToTurn * kDegrees); //goes at angle of 20 degrees to drive to park zone
-
-    distanceToDrive = 120; //10 ft.
-    drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //drives 11 feet to park zone
+    clasp_goal(true); //puts grabber down
 
 
     transition(); //waits for autonomous phase to end

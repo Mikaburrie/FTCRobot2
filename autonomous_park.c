@@ -95,6 +95,15 @@ task main()
   distanceToDrive = 72.0; //6 feet
   drive_both_wheels (-motorSpeed, -motorSpeed, distanceToDrive * kInch); //drives out of parking zone to kickstand
 
+  int i = 0;
+  for(i = 0; i <= 1; i++){
+  	distanceToDrive = 6.0; //6 in
+  	drive_both_wheels (motorSpeed, motorSpeed, distanceToDrive * kInch);
+
+  	distanceToDrive = 10.0 //10 in
+  	drive_both_wheels (-motorSpeed, -motorSpeed, distanceToDrive * kInch);
+  }
+
   distanceToDrive = 12.0; //12 in
   drive_both_wheels(motorSpeed, motorSpeed, distanceToDrive * kInch); //backs up to angle for final try
 
@@ -110,6 +119,13 @@ task main()
   distanceToDrive = 30.0; //2.5 feet
   drive_both_wheels(-motorSpeed, -motorSpeed, distanceToDrive * kInch); //comes in for final try to knock down the kickstand
 
+  for(i = 0; i <= 1; i++){
+  	distanceToDrive = 6.0; //6 in
+  	drive_both_wheels (motorSpeed, motorSpeed, distanceToDrive * kInch);
+
+  	distanceToDrive = 10.0; //10 in
+  	drive_both_wheels (-motorSpeed, -motorSpeed, distanceToDrive * kInch);
+  }
   //the program basically flails around to knock down the kickstand
 
 
